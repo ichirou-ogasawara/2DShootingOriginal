@@ -12,7 +12,7 @@ public class SpaceShip : MonoBehaviour
         {
             return hp;
         }
-        set
+        protected set
         {
             hp = value;
         }
@@ -23,7 +23,7 @@ public class SpaceShip : MonoBehaviour
         {
             return atk;
         }
-        set
+        protected set
         {
             atk = value;
         }

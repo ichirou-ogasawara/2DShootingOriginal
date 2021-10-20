@@ -10,7 +10,7 @@ public class TouchController : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     void Start()
     {
-        GameObject playerShip = GameObject.FindGameObjectWithTag("playerShip");
+        
     }
 
     public void OnBeginDrag(PointerEventData data)
@@ -19,7 +19,7 @@ public class TouchController : MonoBehaviour, IDragHandler, IBeginDragHandler
     }
 
     public void OnDrag(PointerEventData data)
-    {      
-        touchInput = data.position - startPosition;
+    {
+        touchInput = (data.position - startPosition).normalized;
     }
 }
