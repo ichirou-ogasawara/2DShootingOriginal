@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class SpaceShip : MonoBehaviour
+public class SpaceShip : MonoBehaviour // この戦闘機クラスを親クラスとし、自機、敵機へと継承させる。
 {
-    protected float hp;
-    protected float atk;
+    protected Rigidbody2D spaceShipRB;
+
+    [SerializeField] protected float hp; // 体力
+    [SerializeField] protected float moveSpeed; // 機体の移動速度
+    [SerializeField] protected float bodyAtk; // 他の機体にぶつかったときの攻撃力
+
+    protected float movableRangeX = 2.5f; // 横の移動可能範囲
+    protected float movableRangeY = 4.5f; // 縦の移動可能範囲
 
     public float Hp // hpプロパティの定義
     {
@@ -17,34 +23,21 @@ public class SpaceShip : MonoBehaviour
             hp = value;
         }
     }
-    public float Atk // atkプロパティの定義
+    public float Movespeed // moveSpeedプロパティの定義
     {
         get
         {
-            return atk;
+            return moveSpeed;
         }
         protected set
         {
-            atk = value;
+            moveSpeed = value;
         }
     }
     
-    public void Hit(SpaceShip target) // 攻撃メソッド
+    public void Hit(float damage) // 攻撃を受けるとhpを減らすメソッド
     {
-        target.hp -= atk;
-    }
-    
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        hp -= damage;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -4,43 +4,47 @@ using UnityEngine;
 
 public class BulletGenerator : MonoBehaviour
 {
-    public Transform bulletSpawn;
-    public GameObject bullet;
+    public static BulletGenerator instance;
 
-    [SerializeField] private float nextFire = 0.5f;
+    public Transform bulletSpawnPos;
+    public ObjectPool bulletPool;
+
+    [SerializeField] private float nextFire; //連射速度
     public float currentTime = 0.0f;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+ 
+    }
     // Start is called before the first frame update
     void Start()
     {
-        bulletSpawn = this.gameObject.transform;
+        bulletSpawnPos = gameObject.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Shoot();
-    }
-
-    public void Shoot()
-    {
         currentTime += Time.deltaTime;
 
         if (currentTime > nextFire)
         {
-            nextFire += currentTime;
 
-            GameObject bulletInstance = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
-            if (gameObject.layer == LayerMask.NameToLayer("Player"))
-            {
-                bulletInstance.layer = LayerMask.NameToLayer("PlayerBullet");
-            }
-            else
-            {
-                bulletInstance.layer = LayerMask.NameToLayer("EnemyBullet");
-            }
 
-            nextFire -= currentTime;
-            currentTime = 0.0f;
-        }
+            // オブジェクトプールのメソッドで弾をアクティブにする
+
+            bulletPool.SpawnObj(bulletSpawnPos.position);
+            currentTime = 0;
+        }        
     }
+
+    public void Shoot()
+    {
+
+    }
+
 }

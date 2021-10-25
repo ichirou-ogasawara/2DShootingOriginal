@@ -15,11 +15,12 @@ public class TouchController : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData data)
     {
-        startPosition = data.position; // タッチした位置をドラッグ開始位置とする
+        startPosition = data.position; // ドラッグ開始位置のデータを代入
     }
 
     public void OnDrag(PointerEventData data)
     {
-        touchInput = (data.position - startPosition).normalized;
+        // ドラッグしたぶんのデータを正規化して代入
+        touchInput = (data.position - startPosition).normalized; 
     }
 }
