@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour // Player‚Ì’e‚ÆEnemy‚Ì’e‚Ö‚ÆŒp³‚³‚¹‚é
         {
             return atk;
         }
-        protected set
+        set
         {
             value = atk;
         }

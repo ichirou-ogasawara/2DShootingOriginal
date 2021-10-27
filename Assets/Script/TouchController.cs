@@ -21,6 +21,6 @@ public class TouchController : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void OnDrag(PointerEventData data)
     {
         // ドラッグしたぶんのデータを正規化して代入
-        touchInput = (data.position - startPosition).normalized; 
+        touchInput = (data.position - startPosition); 
     }
 }

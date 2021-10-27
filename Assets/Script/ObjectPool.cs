@@ -14,26 +14,28 @@ public class ObjectPool : MonoBehaviour
         // 最初にオブジェクトプールを生成して、非表示にしておく
         for (int i = 0; i < startAmount; i++)
         {
-            pool.Add(Instantiate(objectToPool));
+            pool.Add(Instantiate(objectToPool, transform));
             pool[i].SetActive(false);
-            pool[i].transform.parent = transform;
         }
+    }
+
+    void Generate()
+    {
+        GameObject instance = Instantiate(objectToPool, transform);
+        pool.Add(instance);
+        instance.SetActive(false);
     }
 
     public GameObject SpawnObj(Vector2 position) // 位置を指定してプールのオブジェクトをアクティブにするメソッド
     {
-        GameObject obj;
+        if (pool.Count <= 0) // プールにオブジェクトが無ければ生成
+        {
+            Generate();
+            Debug.LogWarning(objectToPool.name + "が足りません");
+        }
 
-        if (pool.Count > 0) // プールにオブジェクトがあれば削除
-        {
-            obj = pool[0];
-            pool.RemoveAt(0);
-        }
-        else                // 無ければ生成
-        {
-            obj = Instantiate(objectToPool);
-            obj.transform.parent = transform;
-        }
+        GameObject obj = pool[0];
+        pool.RemoveAt(0); // プールの0番目の要素を削除
 
         obj.SetActive(true); // アクティブにする
         obj.transform.position = position;

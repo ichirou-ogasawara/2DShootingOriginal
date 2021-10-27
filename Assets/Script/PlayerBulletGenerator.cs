@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletGenerator : MonoBehaviour
+public class PlayerBulletGenerator : MonoBehaviour
 {
-    public static BulletGenerator instance;
+    public static PlayerBulletGenerator instance;
 
     public Transform bulletSpawnPos;
-    public ObjectPool bulletPool;
+
+    public ObjectPool playerBulletPool;
 
     [SerializeField] private float nextFire; //連射速度
     public float currentTime = 0.0f;
@@ -18,14 +19,12 @@ public class BulletGenerator : MonoBehaviour
         {
             instance = this;
         }
- 
     }
     // Start is called before the first frame update
     void Start()
     {
         bulletSpawnPos = gameObject.transform;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -33,11 +32,8 @@ public class BulletGenerator : MonoBehaviour
 
         if (currentTime > nextFire)
         {
-
-
             // オブジェクトプールのメソッドで弾をアクティブにする
-
-            bulletPool.SpawnObj(bulletSpawnPos.position);
+            playerBulletPool.SpawnObj(bulletSpawnPos.position);
             currentTime = 0;
         }        
     }

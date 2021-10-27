@@ -8,6 +8,8 @@ public class EnemyRed : SpaceShip // 戦闘機クラスを継承
     void Start()
     {
         spaceShipRB = this.gameObject.GetComponent<Rigidbody2D>();
+        currentSpeed = maxSpeed;
+        ResetHp();
     }
 
     // Update is called once per frame
@@ -15,7 +17,7 @@ public class EnemyRed : SpaceShip // 戦闘機クラスを継承
     {
         MoveEnemyRed();
 
-        if (transform.position.y < -5 || this.hp <= 0)
+        if (transform.position.y < -5 || this.currentHp <= 0)
         {
             DestroyEnemy();
         }
@@ -23,7 +25,7 @@ public class EnemyRed : SpaceShip // 戦闘機クラスを継承
 
     void MoveEnemyRed()
     {
-        spaceShipRB.velocity = new Vector2(0, 1) * -1 * moveSpeed;
+        spaceShipRB.velocity = new Vector2(0, 1) * -1 * currentSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,5 +38,6 @@ public class EnemyRed : SpaceShip // 戦闘機クラスを継承
     public void DestroyEnemy()
     {
         EnemySpawner.instance.enemyRedPool.ReturnObj(gameObject);
+        ResetHp();
     }
 }

@@ -4,13 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - playerShip
   - Breakable
+  - AttackModify
+  - MoveSpeedModify
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Item
   - Water
   - UI
   - Player
