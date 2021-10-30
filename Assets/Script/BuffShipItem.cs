@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : Bullet // BulletÉNÉâÉXÇåpè≥
+public class BuffShipItem : Item
 {
     // Start is called before the first frame update
     void Start()
     {
-        bulletRB = this.gameObject.GetComponent<Rigidbody2D>();
+        itemRB = GetComponent<Rigidbody2D>();
+        Destroy(gameObject, deleteTime);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        bulletRB.velocity = new Vector2(0, -1) * this.bulletSpeed;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collision.gameObject.GetComponent<SpaceShip>().Hit(atk);
+            collision.gameObject.GetComponent<PlayerShip>().BuffShip(this.atkIncreaseValue, this.SpeedUpCoefficient);
+            Destroy(gameObject);
         }
     }
 }

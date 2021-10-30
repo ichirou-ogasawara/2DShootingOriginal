@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class PlayerBullet : Bullet // Bulletクラスを継承
 {
-    private void Awake()
-    {
-    
-    }
+    Rigidbody2D bulletRB;
+
+    public static float addAtk = 0;
+
+    [SerializeField] float bulletSpeed;
+    public static float addSpeed = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        bulletRB = this.gameObject.GetComponent<Rigidbody2D>(); 
+        bulletRB = GetComponent<Rigidbody2D>();      
     }
 
+    private void Update()
+    {
+        // 弾バフ時のパーティクルをここで再生
+        gameObject.GetComponent<ParticleSystem>().Play();
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        bulletRB.velocity = new Vector2(0, 1) * bulletSpeed;
+        bulletRB.velocity = new Vector2(0, 1) * bulletSpeed * addSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyBullet"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            //BulletGenerator.instance.bulletPool.ReturnObject(gameObject);
+            collision.gameObject.GetComponent<SpaceShip>().Hit(bulletAtk + addAtk);       
         }
 
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            collision.gameObject.GetComponent<SpaceShip>().Hit(atk);
-            //BulletGenerator.instance.bulletPool.ReturnObject(gameObject);
-        }
+        PlayerBulletGenerator.instance.playerBulletPool.ReturnObj(gameObject);
     }
 }

@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 2
-  maxSpeed: 1
+  moveSpeed: 1
+  currentSpeed: 0
   bodyAtk: 1
 --- !u!212 &7844688132179502278
 SpriteRenderer:
@@ -236,5 +237,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPos: {fileID: 3373164299890831057}
   enemyBulletPool: {fileID: 0}
-  nextFire: 2
-  currentTime: 0
+  rateOfFire: 1.5

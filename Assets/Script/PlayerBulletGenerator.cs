@@ -10,7 +10,7 @@ public class PlayerBulletGenerator : MonoBehaviour
 
     public ObjectPool playerBulletPool;
 
-    [SerializeField] private float nextFire; //連射速度
+    [SerializeField] private float rateOfFire = 0.5f; //連射速度
     public float currentTime = 0.0f;
 
     private void Awake()
@@ -30,7 +30,7 @@ public class PlayerBulletGenerator : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if (currentTime > nextFire)
+        if (currentTime >= rateOfFire)
         {
             // オブジェクトプールのメソッドで弾をアクティブにする
             playerBulletPool.SpawnObj(bulletSpawnPos.position);

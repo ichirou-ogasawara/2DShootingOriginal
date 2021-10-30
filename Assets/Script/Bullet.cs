@@ -3,30 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Bullet : MonoBehaviour // Player‚Ì’e‚ÆEnemy‚Ì’e‚Ö‚ÆŒp³‚³‚¹‚é
 {
-    protected Rigidbody2D bulletRB;
-    [SerializeField] protected float atk; // UŒ‚—Í
-    [SerializeField] protected float bulletSpeed; // ’e‚Ì‘¬“x
+    [SerializeField] protected float bulletAtk;
 
-    public float Atk
+    public float BulletAtk
     {
         get
         {
-            return atk;
+            return bulletAtk;
         }
-        set
+        protected set
         {
-            value = atk;
+            value = bulletAtk;
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

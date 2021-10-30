@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] PlayerShip playerShip;
-    [SerializeField] PlayerBullet playerBullet;
+    protected Rigidbody2D itemRB;
 
-    Rigidbody2D rb;
+    [SerializeField] protected float atkIncreaseValue = 1f;
+    [SerializeField] protected float SpeedUpCoefficient = 1.5f;
 
-    protected float atkUpCoefficient = 2f;
-    protected float maxSpeedUpCoefficient = 1.5f;
-    protected float effectTime = 8f;
+    [SerializeField] protected float deleteTime = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -27,14 +25,7 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.tag == "AttackModify")
-        {
-            playerBullet.Atk *= atkUpCoefficient;
-        }
-        else if (gameObject.tag == "MoveSpeedModify")
-        {
-            playerShip.MaxSpeed *= maxSpeedUpCoefficient;
-        }
+
     }
 
     public void ItemEffect()

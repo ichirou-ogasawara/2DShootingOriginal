@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectInactivator : MonoBehaviour
 {
-    [SerializeField] protected float deadLineX = 8.5f;
+    [SerializeField] protected float deadLineX = 9f;
     [SerializeField] protected float deadLineTop = 6f;
     [SerializeField] protected float deadLineUnder = -5f;
     // Start is called before the first frame update

@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8726879179440309636}
+  - component: {fileID: 1615582308959074708}
+  - component: {fileID: -3011433116625215772}
+  - component: {fileID: -5625827468139873289}
   - component: {fileID: 8726879179440309637}
   - component: {fileID: 8726879179440309638}
   - component: {fileID: 8726879179440309639}
   - component: {fileID: 8726879179440309641}
-  - component: {fileID: 1615582308959074708}
-  - component: {fileID: -3011433116625215772}
   m_Layer: 9
   m_Name: RedBulletPrefab
   m_TagString: Untagged
@@ -36,6 +37,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1615582308959074708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726879179440309642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7e88894bce33e45a1308fc022caf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletAtk: 1
+--- !u!114 &-3011433116625215772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726879179440309642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d141e8ccf6997674abd2633af70c5898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadLineX: 9
+  deadLineTop: 6
+  deadLineUnder: -5
+--- !u!114 &-5625827468139873289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726879179440309642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04878d2309b3fe34e8abac531450ec9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 3
 --- !u!33 &8726879179440309637
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -138,32 +180,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1615582308959074708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8726879179440309642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7e88894bce33e45a1308fc022caf49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 1
-  bulletSpeed: 3
---- !u!114 &-3011433116625215772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8726879179440309642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d141e8ccf6997674abd2633af70c5898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deadLineX: 8.5
-  deadLineTop: 6
-  deadLineUnder: -5

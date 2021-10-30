@@ -2,30 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRed : SpaceShip // 戦闘機クラスを継承
+public class EnemyRed : Enemy // SpaceShipクラスを継承
 {
     // Start is called before the first frame update
     void Start()
     {
         spaceShipRB = this.gameObject.GetComponent<Rigidbody2D>();
-        currentSpeed = maxSpeed;
         ResetHp();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveEnemyRed();
+        MoveStraight();
 
-        if (transform.position.y < -5 || this.currentHp <= 0)
+        if (transform.position.y < -5)
         {
             DestroyEnemy();
         }
-    }
-
-    void MoveEnemyRed()
-    {
-        spaceShipRB.velocity = new Vector2(0, 1) * -1 * currentSpeed;
+        else if (this.currentHp <= 0)
+        {
+            GameObject.Find("ItemGenerator").GetComponent<ItemDroper>().DropItem(this.gameObject);
+            DestroyEnemy();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,10 +33,5 @@ public class EnemyRed : SpaceShip // 戦闘機クラスを継承
         {
             collision.gameObject.GetComponent<SpaceShip>().Hit(bodyAtk);
         }
-    }
-    public void DestroyEnemy()
-    {
-        EnemySpawner.instance.enemyRedPool.ReturnObj(gameObject);
-        ResetHp();
     }
 }
