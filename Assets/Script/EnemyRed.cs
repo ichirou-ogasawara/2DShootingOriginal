@@ -16,14 +16,15 @@ public class EnemyRed : Enemy // SpaceShipƒNƒ‰ƒX‚ğŒp³
     {
         MoveStraight();
 
-        if (transform.position.y < -5)
+        if (transform.position.y < -movableRangeY)
         {
             DestroyEnemy();
         }
         else if (this.currentHp <= 0)
         {
-            GameObject.Find("ItemGenerator").GetComponent<ItemDroper>().DropItem(this.gameObject);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             DestroyEnemy();
+            GetItemAndScore();
         }
     }
 

@@ -17,6 +17,10 @@ public class BuffShipItem : Item
         
     }
 
+    private void FixedUpdate()
+    {
+        itemRB.velocity = new Vector2(0, 1f) * -1 * moveSpeed;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BuffBulletItem : Item
 {
-    [SerializeField] GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +14,12 @@ public class BuffBulletItem : Item
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    private void FixedUpdate()
+    {
+        itemRB.velocity = new Vector2(0, 1f) * -1 * moveSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -50,8 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkIncreaseValue: 1
-  SpeedUpCoefficient: 1.5
-  deleteTime: 10
+  SpeedUpCoefficient: 1.2
+  deleteTime: 8
+  moveSpeed: 0.8
 --- !u!33 &1189364431628688431
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1e800e103c3397243a22ab972b109935, type: 2}
+  - {fileID: 2100000, guid: 1d4da23f8ae7946449b2f2a203679809, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

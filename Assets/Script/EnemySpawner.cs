@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     {
         this.delta += Time.deltaTime;
 
-        if (this.delta > this.span)
+        if (this.delta > this.span && !BackgroundController.isComingBoss && !UIController.isGameEnd)
         {
             this.delta = 0;
             int n = Random.Range(1, 11);

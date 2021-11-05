@@ -10,6 +10,7 @@ public class Item : MonoBehaviour
     [SerializeField] protected float SpeedUpCoefficient = 1.5f;
 
     [SerializeField] protected float deleteTime = 10;
+    [SerializeField] protected float moveSpeed;
 
     // Start is called before the first frame update
     void Start()

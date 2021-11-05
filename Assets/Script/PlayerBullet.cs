@@ -5,27 +5,32 @@ using UnityEngine;
 public class PlayerBullet : Bullet // Bulletクラスを継承
 {
     Rigidbody2D bulletRB;
+    [SerializeField] ParticleSystem bulletParticle;
 
-    public static float addAtk = 0;
+    public static float addAtk = 0.0f;
 
     [SerializeField] float bulletSpeed;
-    public static float addSpeed = 1;
+    public static float addSpeed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        bulletRB = GetComponent<Rigidbody2D>();      
+        bulletRB = GetComponent<Rigidbody2D>();
+        bulletParticle = GetComponent<ParticleSystem>();
     }
 
     private void Update()
     {
-        // 弾バフ時のパーティクルをここで再生
-        gameObject.GetComponent<ParticleSystem>().Play();
+
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate() 
     {
-        bulletRB.velocity = new Vector2(0, 1) * bulletSpeed * addSpeed;
+        bulletRB.velocity = new Vector2(0, 1) * bulletSpeed * addSpeed; 
+        if (addSpeed > 1.0f)
+        {
+            bulletParticle.Play(); // Update関数内で使うと何故か不安定に
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +39,5 @@ public class PlayerBullet : Bullet // Bulletクラスを継承
         {
             collision.gameObject.GetComponent<SpaceShip>().Hit(bulletAtk + addAtk);       
         }
-
-        PlayerBulletGenerator.instance.playerBulletPool.ReturnObj(gameObject);
     }
 }

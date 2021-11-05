@@ -1,24 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShip : SpaceShip // SpaceShipクラスを継承
 {
-    [SerializeField] float buffDuration = 10f;
-    float delta1 = 0;
-    float delta2 = 0;
+    [SerializeField] float buffDuration = 8.0f;
+    float delta1 = 0.0f;
+    float delta2 = 0.0f;
 
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Slider slider;
+
     // Start is called before the first frame update
     void Start()
     {
-        spaceShipRB = GetComponent<Rigidbody2D>(); // rigidbody2dコンポーネントを取得
+        spaceShipRB = GetComponent<Rigidbody2D>();
         ResetHp();
+        slider.value = 1;
         currentSpeed = moveSpeed;
     }
 
     void Update()
     {
+        if (isGetDamage)
+        {
+            slider.value = (float)currentHp / (float)maxHp;
+        }
+
         if (isGetShipBuff == true)
         {
             delta1 += Time.deltaTime;
@@ -41,7 +49,10 @@ public class PlayerShip : SpaceShip // SpaceShipクラスを継承
 
         if (this.currentHp <= 0)
         {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            GetComponent<SoundController>().SE3();
             Destroy(this.gameObject);
+            GameObject.Find("UICanvas").GetComponent<UIController>().GameOver();
         }
     }
 
@@ -76,11 +87,22 @@ public class PlayerShip : SpaceShip // SpaceShipクラスを継承
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            if (collision.gameObject.tag == "Boss")
+            {
+                this.bodyAtk = 0;
+            }
             collision.gameObject.GetComponent<SpaceShip>().Hit(this.bodyAtk);
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
-            
+            delta1 = 0;
+            delta2 = 0;
+            GetComponent<SoundController>().SE2();
+        }
+        else if (!isGetShipBuff)
+        {
+            GetComponent<SoundController>().SE1();
         }
     }
 
@@ -90,7 +112,7 @@ public class PlayerShip : SpaceShip // SpaceShipクラスを継承
         {
             bodyAtk += value;
             currentSpeed *= coefficient;
-            GetComponent<ParticleSystem>().Play();
+            this.gameObject.GetComponent<ParticleSystem>().Play();
         }
         isGetShipBuff = true;
     }
@@ -98,7 +120,7 @@ public class PlayerShip : SpaceShip // SpaceShipクラスを継承
     {
         currentSpeed = moveSpeed;
         bodyAtk = 1;
-        GetComponent<ParticleSystem>().Stop();
+        this.gameObject.GetComponent<ParticleSystem>().Stop();
         isGetShipBuff = false;
     }
 
@@ -108,7 +130,6 @@ public class PlayerShip : SpaceShip // SpaceShipクラスを継承
         {
             PlayerBullet.addAtk = value;
             PlayerBullet.addSpeed = coefficient;
-            bulletPrefab.gameObject.GetComponent<ParticleSystem>().Play();
         }
         isGetBulletBuff = true;
     }
@@ -117,7 +138,16 @@ public class PlayerShip : SpaceShip // SpaceShipクラスを継承
     {
         PlayerBullet.addAtk = 0;
         PlayerBullet.addSpeed = 1f;
-        bulletPrefab.gameObject.GetComponent<ParticleSystem>().Stop();
         isGetBulletBuff = false;
+    }
+
+    public void RestoreHp(float value)
+    {
+        currentHp += value;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+        isGetDamage = true; // Hpゲージの表示に反映させるため
     }
 }

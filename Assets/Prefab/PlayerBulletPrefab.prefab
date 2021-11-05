@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6288097104620719257}
+  - component: {fileID: 2739431773154507566}
+  - component: {fileID: 4595064196897904348}
   - component: {fileID: 4772521521349587835}
   - component: {fileID: 7133722610246756951}
   - component: {fileID: 7274467665725376258}
   - component: {fileID: 9172665285105519569}
-  - component: {fileID: 2739431773154507566}
-  - component: {fileID: 4595064196897904348}
   - component: {fileID: -348789052851683618}
   - component: {fileID: 845007064560357406}
   m_Layer: 7
@@ -38,6 +38,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2739431773154507566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271791691793034520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc36c11dda247f7489cb3238e5b688c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletAtk: 1
+  bulletParticle: {fileID: -348789052851683618}
+  bulletSpeed: 4.2
+--- !u!114 &4595064196897904348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271791691793034520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d141e8ccf6997674abd2633af70c5898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadLineX: 9
+  deadLineTop: 6
+  deadLineUnder: -5
 --- !u!33 &4772521521349587835
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -140,35 +170,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2739431773154507566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4271791691793034520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc36c11dda247f7489cb3238e5b688c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletAtk: 1
-  bulletSpeed: 5
---- !u!114 &4595064196897904348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4271791691793034520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d141e8ccf6997674abd2633af70c5898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deadLineX: 9
-  deadLineTop: 6
-  deadLineUnder: -5
 --- !u!198 &-348789052851683618
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4271791691793034520}
   serializedVersion: 7
-  lengthInSec: 4
+  lengthInSec: 10
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -252,7 +253,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -305,7 +306,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -359,7 +360,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.19496846, g: 0.8590337, b: 1, a: 1}
+      maxColor: {r: 0.7058824, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -421,7 +422,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -686,7 +687,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.712389
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -743,7 +744,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 7
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1055,7 +1056,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 10
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4915,7 +4916,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

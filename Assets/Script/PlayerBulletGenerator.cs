@@ -32,6 +32,7 @@ public class PlayerBulletGenerator : MonoBehaviour
 
         if (currentTime >= rateOfFire)
         {
+
             // オブジェクトプールのメソッドで弾をアクティブにする
             playerBulletPool.SpawnObj(bulletSpawnPos.position);
             currentTime = 0;

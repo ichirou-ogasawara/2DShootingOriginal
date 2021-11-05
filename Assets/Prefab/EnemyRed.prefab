@@ -47,10 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367d388e5814c0d44990af1824044f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 100006, guid: 2e7e92bc7175b744ea40878dedfa79e4, type: 3}
   maxHp: 2
   moveSpeed: 1
-  currentSpeed: 0
   bodyAtk: 1
+  moveSideRange: 8
+  addScore: 1
 --- !u!212 &7844688132179502278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: eec93ad1e7889ff448a46adf1a733342, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -235,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54f7f56d188c8142ad8480f05cb1599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  muzzleFlashPrefab: {fileID: 100006, guid: f47cb9d88f4bc6c4bb7441e962c2c1a5, type: 3}
   bulletSpawnPos: {fileID: 3373164299890831057}
   enemyBulletPool: {fileID: 0}
-  rateOfFire: 1.5
+  rateOfFire: 2
